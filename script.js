@@ -18,14 +18,16 @@ function getComputerChoice() {
 
 function getHumanChoice() {
   const userChoice = prompt("Please enter your move").toLowerCase();
-  if (userChoice === "rock") {
-    return "Rock";
-  } else if (userChoice === "paper") {
-    return "Paper";
-  } else if (userChoice === "scissors") {
-    return "Scissors";
-  } else {
-    alert("Please enter a valid move");
+  
+  switch(userChoice) {
+    case "rock":
+      return "Rock";
+    case "paper":
+      return "Paper";
+    case "scissors":
+      return "Scissors";
+    default:
+      alert("Please enter a valid move");
   }
 }
 
