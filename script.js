@@ -1,1 +1,16 @@
-console.log("Hello World");
+// Check JavaScript work correctly
+// console.log("Hello World");
+
+function getComputerChoice() {
+  const randomNumber = Math.floor(Math.random() * 3);
+
+  if (randomNumber === 0) {
+    return "Rock";
+  } else if (randomNumber === 1) {
+    return "Paper";
+  } else {
+    return "Scissors";
+  }
+}
+
+console.log(getComputerChoice());
