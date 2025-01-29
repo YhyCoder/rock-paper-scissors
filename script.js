@@ -1,6 +1,7 @@
 // Check JavaScript work correctly
 // console.log("Hello World");
 
+const userChoice = prompt("Please enter your move").toLowerCase();
 let humanScore = 0;
 let computerScore = 0;
 
@@ -16,10 +17,8 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  const userChoice = prompt("Please enter your move").toLowerCase();
-  
-  switch(userChoice) {
+function getHumanChoice(userChoice) {
+  switch (userChoice) {
     case "rock":
       return "Rock";
     case "paper":
@@ -32,4 +31,4 @@ function getHumanChoice() {
 }
 
 console.log(getComputerChoice());
-console.log(getHumanChoice());
+console.log(getHumanChoice(userChoice));
