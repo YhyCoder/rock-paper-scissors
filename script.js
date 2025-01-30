@@ -8,12 +8,13 @@ let computerScore = 0;
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3);
 
-  if (randomNumber === 0) {
-    return "Rock";
-  } else if (randomNumber === 1) {
-    return "Paper";
-  } else {
-    return "Scissors";
+  switch(randomNumber) {
+    case 0:
+      return "Rock";
+    case 1:
+      return "Paper";
+    default:
+      return "Scissors";
   }
 }
 
