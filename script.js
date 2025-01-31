@@ -1,6 +1,7 @@
 // Check JavaScript work correctly
 // console.log("Hello World");
 
+//computer move
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3);
 
@@ -14,6 +15,7 @@ function getComputerChoice() {
   }
 }
 
+//user move
 function getHumanChoice(userChoice) {
   switch (userChoice) {
     case "rock":
@@ -28,11 +30,13 @@ function getHumanChoice(userChoice) {
   }
 }
 
+//run game five round
 function playGame() {
   const gameRoundNumber = 5;
   let humanScore = 0;
   let computerScore = 0;
 
+  //run game one round
   function playRound(humanChoice, computerChoice) {
     if (
       (humanChoice === "Rock" && computerChoice === "Scissors") ||
@@ -59,6 +63,7 @@ function playGame() {
     }
   }
 
+  //loop for run game five times
   for (let i = 0; i < gameRoundNumber; i++) {
     const userChoice = prompt("Please enter your move").toLowerCase();
     const humanSelection = getHumanChoice(userChoice);
@@ -66,8 +71,10 @@ function playGame() {
     playRound(humanSelection, computerSelection);
   }
 
+  //log game result in console
   console.log(`You ${humanScore}-${computerScore} Computer`);
 
+  //check score and declare winner in console
   if (humanScore > computerScore) {
     console.log("Yay! You win the game");
   } else if (humanScore < computerScore) {
