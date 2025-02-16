@@ -1,6 +1,8 @@
 // Check JavaScript work correctly
 // console.log("Hello World");
 
+const buttons = document.querySelectorAll(".game-button");
+
 //computer move
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3);
@@ -63,13 +65,14 @@ function playGame() {
     }
   }
 
-  //loop for run game five times
-  for (let i = 0; i < gameRoundNumber; i++) {
-    const userChoice = prompt("Please enter your move").toLowerCase();
-    const humanSelection = getHumanChoice(userChoice);
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-  }
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const userChoice = button.textContent.toLowerCase();
+      const humanSelection = getHumanChoice(userChoice);
+      const computerSelection = getComputerChoice();
+      playRound(humanSelection, computerSelection);
+    });
+  });
 
   //log game result in console
   console.log(`You ${humanScore}-${computerScore} Computer`);
