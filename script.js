@@ -1,7 +1,11 @@
 // Check JavaScript work correctly
 // console.log("Hello World");
 
+const resultWrapper = document.querySelector(".result-wrapper");
 const buttons = document.querySelectorAll(".game-button");
+const roundResult = document.createElement("p");
+const roundScore = document.createElement("p");
+const gameResult = document.createElement("p");
 
 //computer move
 function getComputerChoice() {
@@ -34,7 +38,6 @@ function getHumanChoice(userChoice) {
 
 //run game five round
 function playGame() {
-  const gameRoundNumber = 5;
   let humanScore = 0;
   let computerScore = 0;
 
@@ -45,26 +48,43 @@ function playGame() {
       (humanChoice === "Paper" && computerChoice === "Rock") ||
       (humanChoice === "Scissors" && computerChoice === "Paper")
     ) {
-      console.log(
-        `Congratulations, You win! ${humanChoice} beats ${computerChoice}`
-      );
+      roundResult.textContent = `Congratulations, You win! ${humanChoice} beats ${computerChoice}`;
       humanScore++;
     } else if (
       (humanChoice === "Scissors" && computerChoice === "Rock") ||
       (humanChoice === "Rock" && computerChoice === "Paper") ||
       (humanChoice === "Paper" && computerChoice === "Scissors")
     ) {
-      console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+      roundResult.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
       computerScore++;
     } else if (humanChoice === computerChoice) {
-      console.log("Draw!");
+      roundResult.textContent = "Draw!";
     } else {
-      console.log(
-        `${humanChoice} is not valid choice, Please use Rock, Paper or Scissors!`
-      );
+      roundResult.textContent = `${humanChoice} is not valid choice, Please use Rock, Paper or Scissors!`;
+    }
+
+    // show each round result in pgae
+    resultWrapper.appendChild(roundResult);
+
+    //show all round score in page
+    roundScore.textContent = `You ${humanScore}-${computerScore} Computer`;
+    resultWrapper.appendChild(roundScore);
+
+    // when the player or computer reaches 5 points, it displays the winner
+    if(humanScore == 5 || computerScore == 5) {
+      if (humanScore > computerScore) {
+        gameResult.textContent = "Yay! You win the game";
+      } else if (humanScore < computerScore) {
+        gameResult.textContent = "Game Over!";
+      } else {
+        gameResult.textContent = "Tie! You will win next time";
+      }
+
+      resultWrapper.appendChild(gameResult);
     }
   }
 
+  // click each button play one round in game
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const userChoice = button.textContent.toLowerCase();
@@ -73,18 +93,6 @@ function playGame() {
       playRound(humanSelection, computerSelection);
     });
   });
-
-  //log game result in console
-  console.log(`You ${humanScore}-${computerScore} Computer`);
-
-  //check score and declare winner in console
-  if (humanScore > computerScore) {
-    console.log("Yay! You win the game");
-  } else if (humanScore < computerScore) {
-    console.log("Game Over!");
-  } else {
-    console.log("Tie! You will win next time");
-  }
 }
 
 playGame();
